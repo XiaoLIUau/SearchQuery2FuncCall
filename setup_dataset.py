@@ -58,10 +58,13 @@ def load_n_process_data(path):
     dataset = load_dataset('json', data_files=path) #e.g. path = '/content/non_search_examples.json' or '/content/q2f_dataset.json'
     q2f_datasets=dataset.shuffle(seed=42)
 
-    datasets_train_test = q2f_datasets["train"].train_test_split(test_size=80)
-    datasets_train_validation = datasets_train_test["train"].train_test_split(test_size=50)
+    q2f_datasets["test"]  = q2f_datasets["train"].train_test_split(test_size=80)
+    
+    # datasets_train_test = q2f_datasets["train"].train_test_split(test_size=80)
+    # datasets_train_validation = datasets_train_test["train"].train_test_split(test_size=50)
 
-    q2f_datasets["train"] = datasets_train_validation["train"]
-    q2f_datasets["validation"] = datasets_train_validation["test"]
-    q2f_datasets["test"] = datasets_train_test["test"]
+    # q2f_datasets["train"] = datasets_train_validation["train"]
+    # q2f_datasets["validation"] = datasets_train_validation["test"]
+    # q2f_datasets["test"] = datasets_train_test["test"]
+    
     return q2f_datasets
