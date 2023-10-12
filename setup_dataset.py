@@ -8,6 +8,7 @@ def parse_line(line):
     if match:
         input_text = match.group(1)
         output_text = match.group(2)
+        output_text = "".join(output_text.split())
         return {"input": input_text, "output": output_text}
     else:
         return None
