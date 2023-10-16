@@ -35,6 +35,21 @@ def print_number_of_trainable_model_parameters(model):
 ##################################
 ### Setup for Model Generation ###
 ##################################
+# Load model function
+def load_model(model_name):
+    bnb_config = BitsAndBytesConfig(
+        load_in_8bit=True,
+        bnb_8bit_use_double_quant=True,
+        bnb_8bit_quant_type="nf4",
+        bnb_8bit_compute_dtype=torch.bfloat16,
+        llm_int8_enable_fp32_cpu_offload=True,
+    )
+    return AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    device_map='auto',
+                    quantization_config=bnb_config,
+                    )
+
 # define prompt format
 def create_prompt(input):
   input_prompt = 'Input:'
