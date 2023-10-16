@@ -1,5 +1,3 @@
-from utilities_main import print_number_of_trainable_model_parameters
-
 ##########################
 ### Setup for Training ###
 ##########################
