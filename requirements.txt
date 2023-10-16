@@ -1,0 +1,12 @@
+torch==1.13.1
+torchdata==0.5.1
+accelerate
+huggingface_hub
+bitsandbytes>0.37.2
+transformers==4.28.1
+datasets==2.11.0
+evaluate==0.4.0
+rouge_score==0.1.2
+loralib==0.1.1
+peft==0.3.0
+trl==0.4.7
