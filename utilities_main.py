@@ -10,6 +10,7 @@ import tqdm
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, GenerationConfig, TrainingArguments, Trainer
 from peft import PeftModel, LoraConfig, get_peft_model, TaskType
+# Package name SearchQuery2FuncCall needed for import in colab
 from SearchQuery2FuncCall.setup_dataset import text2json, load_n_process_data
 from datasets import DatasetDict, Dataset
 from trl import SFTTrainer

@@ -1,4 +1,6 @@
-from utilities_main import print_number_of_trainable_model_parameters
+from datasets import DatasetDict
+# Package name SearchQuery2FuncCall needed for import in colab
+from SearchQuery2FuncCall.utilities_main import print_number_of_trainable_model_parameters
 
 ##########################
 ### Setup for Training ###
@@ -37,7 +39,7 @@ Handle input queries in different language styles. Cover common unit conversion 
 # {input_prompt}“what is tan of 3/4”{output_prompt}“Calculate(tan(3/4))”
 
 
-## Add text variable to datasets 
+### Add text variable to datasets 
 def create_text_datasets(example):
     # Define your custom processing logic here
     prompt_text = create_prompt_training(example['input'], example['output'])
@@ -48,9 +50,6 @@ def process_dataset_dict(dataset_dict, processing_function):
         processed_data = split_data.map(processing_function)
         processed_dict[split_key] = processed_data
     return processed_dict
-# Concatenate "input" and "output" using the custom function
-q2f_datasets = process_dataset_dict(q2f_datasets, create_text_datasets)
-print(q2f_datasets)
 
 
 # Iterate over your training set and calculate the length of each sequence.
@@ -62,7 +61,6 @@ def get_max_seq_length(dataset):
         if text_len > max_seq_length:
             max_seq_length = text_len
     return max_seq_length+100
-max_seq_length = get_max_seq_length(q2f_datasets)
 
 
 ### Prepare model for training
