@@ -2,6 +2,7 @@
 ### Import libraries ###
 ########################
 import os
+import gc
 import time
 import pandas as pd
 import torch
