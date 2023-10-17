@@ -1,6 +1,5 @@
 import re
 import json
-from datasets import load_dataset
 
 # Function to parse input and output from a line
 def parse_line(line):
