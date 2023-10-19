@@ -15,15 +15,15 @@ Smart Search Queries Application
 Handle input queries in different language styles. Cover common unit conversion and calculation operations.
 
 ## Pair Examples
-1. Output:“UnitConvert(SourceUnit:foot, TargetUnit:centimeter,SourceValue:1)”
-2. Input:“how many ounces in 5.8 kilograms”, Output:“UnitConvert(SourceUnit:kilogram,TargetUnit:ounce,SourceValue:5.8)”
-3. Input:“two to the power of 10”, Output:“Calculate(2^10)”
-4. Input:“2001-1989” , Output:“Calculate(2001-1989)”
-5. Input:“what is chatgpt”, Output:“Search()”
-6. Input:“primary year 1 maths calculation checklist”, Output:“Search()”
-7. Input:“what are different length units”, Output:“Search()”
-8. Input:“Natural logarithm of -3/18”, Output:“Calculate(ln(-3/18))”
-9. Input:“what is tan of 3/4”, Output:“Calculate(tan(3/4))”
+1. ##Input##:“ft to cm”, ##Output##:“UnitConvert(SourceUnit:foot, TargetUnit:centimeter,SourceValue:1)”
+2. ##Input##:“how many ounces in 5.8 kilograms”, ##Output##:“UnitConvert(SourceUnit:kilogram,TargetUnit:ounce,SourceValue:5.8)”
+3. ##Input##:“:“two to the power of 10”, ##Output##:“Calculate(2^10)”
+4. ##Input##:“:“2001-1989” , ##Output##:“Calculate(2001-1989)”
+5. ##Input##:“:“what is chatgpt”, ##Output##:“Search()”
+6. ##Input##:“:“primary year 1 maths calculation checklist”, ##Output##:“Search()”
+7. ##Input##:“:“what are different length units”, ##Output##:“Search()”
+8. ##Input##:“:“Natural logarithm of -3/18”, ##Output##:“Calculate(ln(-3/18))”
+9. ##Input##:“:“what is tan of 3/4”, ##Output##:“Calculate(tan(3/4))”
 
 
 ## Development and Technology
