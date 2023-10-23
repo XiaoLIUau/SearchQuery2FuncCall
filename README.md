@@ -38,7 +38,7 @@ Handle input queries in different language styles. Cover common unit conversion 
 * Evaluated model performance with ROUGH and BLEU scores, with Peft fine-tuned quantized Llama 2 achieving comparable results to proprietary models.
 
 ## Eveluation and Metric Scores
-The results use random 80 examples in each test dataset below, it would be better for proper comparison using same testing dataset. 
+The results use random 80 examples in test dataset for each model evaluation below, it would be better for proper comparison using same testing dataset. (Keep the current results due to compute limit, it could be updated in future)
 
 | Model                                     | Rouge1       | Rouge2       | RougeL       | RougeLsum    | Bleu        | Precisions                              | Brevity Penalty | Length Ratio | Translation Length | Reference Length |
 |------------------------------------------|--------------|--------------|--------------|--------------|------------|----------------------------------------|-----------------|--------------|--------------------|------------------|
