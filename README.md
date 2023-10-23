@@ -34,7 +34,7 @@ Handle input queries in different language styles. Cover common unit conversion 
 ## Development and Technology
 * Utilized ChatGPT 3.5 to generate datasets, total of 240 examples.
 * Enhanced search intent recognition and decision-making through prompt engineering, using proprietary model APIs (Cohere, Google Palm) and open-source local models via Hugging Face.
-* Fine-tuned open-source causal (quantized Llama 2) and seq2seq (flan-t5-large) model using Peft and Lora
+* Fine-tuned open-source causal (quantized Llama 2) and seq2seq (flan-t5-large) model using Peft and Lora, where __flan-t5-large__ give significant faster inference, due to smaller model size.
 * Evaluated model performance with ROUGH and BLEU scores, with Peft fine-tuned quantized Llama 2 achieving comparable results to proprietary models.
 
 ## Eveluation and Metric Scores
