@@ -6,6 +6,23 @@ from SearchQuery2FuncCall.utilities_main import print_number_of_trainable_model_
 ### Setup for Training ###
 ##########################
 
+# define prompt format
+def create_prompt(input):
+    input_prompt = 'Input:'
+    output_prompt = ', Output:'
+    instruction = f"""Instruction: Given a search query, then route to different backend components based on the search intent.
+1. If the search is about unit conversion, return API function UnitConvert(SourceUnit, TargetUnit, SourceValue).
+2. If the search is about calculation, return API function Calculate(Equation).
+3. If the search is about other search intent, return API function Search().
+* For unit conversion: common unit conversion in length, mass, time, area, speed, temperature, volume should be covered. And it should be consistent for the same unit throughout. E.g. it should always be “foot”, it cannot be “feet” or “ft” in API calls.
+* For calculation: common operation such as +, -, *, /, pow, log, ln, exp, tan(h), sin(h), cos(h), factorial should be covered. And it should be consistent for the same operation throughout. E.g. it should always be “ * ”, it cannot be “x” or “X” in API calls.
+Handle input queries in different language styles. Cover common unit conversion and calculation operations.
+
+"""
+    prompt = instruction + input_prompt + f'“{input}”' + output_prompt
+    return prompt
+
+
 ### Prepare for training dataset
 def create_prompt_training(input,output):
     input_prompt = 'Input:'
@@ -21,7 +38,6 @@ def create_prompt_training(input,output):
 Handle input queries in different language styles. Cover common unit conversion and calculation operations.
 
 """
-
     prompt = start_prompt + instruction + input_prompt + f'“{input}”' + output_prompt + f'“{output}”' + end_prompt
     return prompt
 
@@ -42,7 +58,7 @@ Handle input queries in different language styles. Cover common unit conversion 
 ### Tokenize the datasets for Trainer
 def tokenize_datasets(datasets,tokenizer):
   def tokenize_function(example):
-      prompt = [create_prompt_training(input) for input in example["input"]]
+      prompt = [create_prompt(input) for input in example["input"]]
       example['input_ids'] = tokenizer(prompt, padding="max_length", truncation=True, return_tensors="pt").input_ids
       example['labels'] = tokenizer(example["output"], padding="max_length", truncation=True, return_tensors="pt").input_ids
       return example
@@ -53,7 +69,7 @@ def tokenize_datasets(datasets,tokenizer):
   return tokenized_datasets
 
 
-### Add text variable to datasets for SFTTrainer
+### Add text variable to datasets 
 def create_text_datasets(example):
     # Define your custom processing logic here
     prompt_text = create_prompt_training(example['input'], example['output'])
