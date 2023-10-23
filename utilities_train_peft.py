@@ -39,7 +39,21 @@ Handle input queries in different language styles. Cover common unit conversion 
 # {input_prompt}“what is tan of 3/4”{output_prompt}“Calculate(tan(3/4))”
 
 
-### Add text variable to datasets 
+### Tokenize the datasets for Trainer
+def tokenize_datasets(datasets,tokenizer):
+  def tokenize_function(example):
+      prompt = [create_prompt_training(input) for input in example["input"]]
+      example['input_ids'] = tokenizer(prompt, padding="max_length", truncation=True, return_tensors="pt").input_ids
+      example['labels'] = tokenizer(example["output"], padding="max_length", truncation=True, return_tensors="pt").input_ids
+      return example
+  # The dataset actually contains 3 diff splits: train, validation, test.
+  # The tokenize_function code is handling all data across all splits in batches.
+  tokenized_datasets = datasets.shuffle().map(tokenize_function, batched=True)
+  tokenized_datasets = tokenized_datasets.remove_columns(['input', 'output'])
+  return tokenized_datasets
+
+
+### Add text variable to datasets for SFTTrainer
 def create_text_datasets(example):
     # Define your custom processing logic here
     prompt_text = create_prompt_training(example['input'], example['output'])
