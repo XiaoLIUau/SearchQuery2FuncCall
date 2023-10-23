@@ -18,6 +18,19 @@ def create_prompt(input):
 * For calculation: common operation such as +, -, *, /, pow, log, ln, exp, tan(h), sin(h), cos(h), factorial should be covered. And it should be consistent for the same operation throughout. E.g. it should always be “ * ”, it cannot be “x” or “X” in API calls.
 Handle input queries in different language styles. Cover common unit conversion and calculation operations.
 
+Examples:
+{input_prompt}“ft to cm”{output_prompt}“UnitConvert(SourceUnit:foot, TargetUnit:centimeter,
+SourceValue:1)”
+{input_prompt}“how many ounces in 5.8 kilograms”{output_prompt}“UnitConvert(SourceUnit:kilogram,
+TargetUnit:ounce, SourceValue:5.8)”
+{input_prompt}“two to the power of 10”{output_prompt}“Calculate(2^10)”
+{input_prompt}“2001-1989” {output_prompt}“Calculate(2001-1989)”
+{input_prompt}“what is chatgpt”{output_prompt}“Search()”
+{input_prompt}“primary year 1 maths calculation checklist”{output_prompt}“Search()”
+{input_prompt}“what are different length units”{output_prompt}“Search()”
+{input_prompt}“Natural logarithm of -3/18”{output_prompt}“Calculate(ln(-3/18))”
+{input_prompt}“what is tan of 3/4”{output_prompt}“Calculate(tan(3/4))”
+
 """
     prompt = instruction + input_prompt + f'“{input}”' + output_prompt
     return prompt
@@ -40,19 +53,6 @@ Handle input queries in different language styles. Cover common unit conversion 
 """
     prompt = start_prompt + instruction + input_prompt + f'“{input}”' + output_prompt + f'“{output}”' + end_prompt
     return prompt
-
-# Examples:
-# {input_prompt}“ft to cm”{output_prompt}“UnitConvert(SourceUnit:foot, TargetUnit:centimeter,
-# SourceValue:1)”
-# {input_prompt}“how many ounces in 5.8 kilograms”{output_prompt}“UnitConvert(SourceUnit:kilogram,
-# TargetUnit:ounce, SourceValue:5.8)”
-# {input_prompt}“two to the power of 10”{output_prompt}“Calculate(2^10)”
-# {input_prompt}“2001-1989” {output_prompt}“Calculate(2001-1989)”
-# {input_prompt}“what is chatgpt”{output_prompt}“Search()”
-# {input_prompt}“primary year 1 maths calculation checklist”{output_prompt}“Search()”
-# {input_prompt}“what are different length units”{output_prompt}“Search()”
-# {input_prompt}“Natural logarithm of -3/18”{output_prompt}“Calculate(ln(-3/18))”
-# {input_prompt}“what is tan of 3/4”{output_prompt}“Calculate(tan(3/4))”
 
 
 ### Tokenize the datasets for Trainer
