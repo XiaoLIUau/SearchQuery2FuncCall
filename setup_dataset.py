@@ -55,18 +55,19 @@ def text2json(path):
     return
 
 
-def load_n_process_data(path):
+def load_n_process_data(path, valid_set=False):
     dataset = load_dataset('json', data_files=path) #e.g. path = '/content/non_search_examples.json' or '/content/q2f_dataset.json'
     q2f_datasets=dataset.shuffle(seed=42)
 
-    datasets_train_test = q2f_datasets["train"].train_test_split(test_size=80)
-    datasets_train_valid = datasets_train_test["train"].train_test_split(test_size=50)
-    q2f_datasets["train"] = datasets_train_valid["train"]
-    q2f_datasets["valid"] = datasets_train_valid["test"]
-    q2f_datasets["test"] = datasets_train_test["test"]
-    
-    # datasets_train_test  = q2f_datasets["train"].train_test_split(test_size=80)
-    # q2f_datasets["train"] = datasets_train_test["train"]
-    # q2f_datasets["test"] = datasets_train_test["test"]
-    
+    if valid_set:
+        datasets_train_test = q2f_datasets["train"].train_test_split(test_size=80)
+        datasets_train_valid = datasets_train_test["train"].train_test_split(test_size=50)
+        q2f_datasets["train"] = datasets_train_valid["train"]
+        q2f_datasets["valid"] = datasets_train_valid["test"]
+        q2f_datasets["test"] = datasets_train_test["test"]
+    else:
+        datasets_train_test  = q2f_datasets["train"].train_test_split(test_size=80)
+        q2f_datasets["train"] = datasets_train_test["train"]
+        q2f_datasets["test"] = datasets_train_test["test"]
+        
     return q2f_datasets
