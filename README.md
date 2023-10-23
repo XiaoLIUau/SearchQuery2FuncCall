@@ -40,10 +40,10 @@ Handle input queries in different language styles. Cover common unit conversion 
 ## Eveluation and Metric Scores
 The results use random 80 examples in each test dataset below, it would be better for proper comparison using same testing dataset. 
 
-| Model Name                                  | Rouge-1   | Rouge-2   | Rouge-L   | Rouge-Lsum   | Bleu   | Brevity Penalty   | Length Ratio   | Translation Length   | Reference Length   |
-|---------------------------------------------|----------|----------|----------|--------------|-------|-------------------|---------------|----------------------|---------------------|
-| flan-t5-large                               | 0.9332   | 0.6144   | 0.9226   | 0.9221       | 0.8358| 0.9746            | 0.9749        | 662                | 679               |
-| fine-tune with peft quantized LLama 2       | 0.9828   | 0.7005   | 0.9833   | 0.9833       | 0.9334| 0.9669            | 0.9675        | 684                | 707               |
-| with prompt engineering quantized LLama 2   | 0.8859   | 0.5330   | 0.8777   | 0.8810       | 0.8040| 0.9372            | 0.9391        | 617                | 657               |
-| with prompt engineering Palm API             | 0.9792   | 0.6571   | 0.9787   | 0.9797       | 0.9031| 0.9851            | 0.9852        | 665                | 675               |
+| Model                                     | Rouge1       | Rouge2       | RougeL       | RougeLsum    | Bleu        | Precisions                              | Brevity Penalty | Length Ratio | Translation Length | Reference Length |
+|------------------------------------------|--------------|--------------|--------------|--------------|------------|----------------------------------------|-----------------|--------------|--------------------|------------------|
+| flan-t5-large fine-tuned with peft       | 0.9332       | 0.6144       | 0.9226       | 0.9221       | 0.8358     | [0.9396, 0.8900, 0.8347, 0.7749]       | 0.9746          | 0.9750       | 662                | 679              |
+| quantized LLama 2 fine-tuned with peft   | 0.9828       | 0.7005       | 0.9833       | 0.9833       | 0.9334     | [0.9898, 0.9752, 0.9580, 0.9392]       | 0.9669          | 0.9675       | 684                | 707              |
+| quantized LLama 2 with prompt engineering| 0.8859       | 0.5330       | 0.8777       | 0.8810       | 0.8039     | [0.9368, 0.8771, 0.8297, 0.7942]       | 0.9372          | 0.9391       | 617                | 657              |
+| Palm API with prompt engineering         | 0.9792       | 0.6571       | 0.9787       | 0.9797       | 0.9031     | [0.9669, 0.9402, 0.9050, 0.8588]       | 0.9851          | 0.9852       | 665                | 675              |
 
