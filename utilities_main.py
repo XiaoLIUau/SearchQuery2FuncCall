@@ -9,7 +9,7 @@ import torch
 import evaluate
 import tqdm
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, GenerationConfig, TrainingArguments, Trainer
+from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, BitsAndBytesConfig, GenerationConfig, TrainingArguments, Trainer
 from peft import PeftModel, LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
 # Package name SearchQuery2FuncCall needed for import in colab
 from SearchQuery2FuncCall.setup_dataset import text2json, load_n_process_data
