@@ -68,5 +68,6 @@ def get_max_seq_length(dataset):
 def freeze_all_parameters(model):
     for param in model.parameters():
         param.requires_grad = False
+    print('\n### After freeze all parameters: ###')
     print(print_number_of_trainable_model_parameters(model))
     return
