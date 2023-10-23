@@ -36,3 +36,14 @@ Handle input queries in different language styles. Cover common unit conversion 
 * Enhanced search intent recognition and decision-making through prompt engineering, using proprietary model APIs (Cohere, Google Palm) and open-source local models via Hugging Face.
 * Fine-tuned open-source causal (quantized Llama 2) and seq2seq (flan-t5-large) model using Peft and Lora
 * Evaluated model performance with ROUGH and BLEU scores, with Peft fine-tuned quantized Llama 2 achieving comparable results to proprietary models.
+
+## Eveluation and Metric Scores
+The results use random 80 examples in each test dataset below, it would be better for proper comparison using same testing dataset. 
+
+| Model Name                                  | Rouge-1   | Rouge-2   | Rouge-L   | Rouge-Lsum   | Bleu   | Brevity Penalty   | Length Ratio   | Translation Length   | Reference Length   |
+|---------------------------------------------|----------|----------|----------|--------------|-------|-------------------|---------------|----------------------|---------------------|
+| flan-t5-large                               | 0.9332   | 0.6144   | 0.9226   | 0.9221       | 0.8358| 0.9746            | 0.9749        | 662                | 679               |
+| fine-tune with peft quantized LLama 2       | 0.9828   | 0.7005   | 0.9833   | 0.9833       | 0.9334| 0.9669            | 0.9675        | 684                | 707               |
+| with prompt engineering quantized LLama 2   | 0.8859   | 0.5330   | 0.8777   | 0.8810       | 0.8040| 0.9372            | 0.9391        | 617                | 657               |
+| with prompt engineering Palm API             | 0.9792   | 0.6571   | 0.9787   | 0.9797       | 0.9031| 0.9851            | 0.9852        | 665                | 675               |
+
