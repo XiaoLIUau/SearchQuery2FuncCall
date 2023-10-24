@@ -40,11 +40,30 @@ Handle input queries in different language styles. Cover common unit conversion 
 ## Eveluation and Metric Scores
 The results use random 80 examples in test dataset for each model evaluation below, it would be better for proper comparison using same testing dataset. (Keep the current results due to compute limit, it could be updated in future)
 
-| Model                                     | Rouge1       | Rouge2       | RougeL       | RougeLsum    | Bleu        | Precisions                              | Brevity Penalty | Length Ratio | Translation Length | Reference Length |
-|------------------------------------------|--------------|--------------|--------------|--------------|------------|----------------------------------------|-----------------|--------------|--------------------|------------------|
-| quantized LLama 2 fine-tuned with peft   | 0.9828       | 0.7005       | 0.9833       | 0.9833       | 0.9334     | [0.9898, 0.9752, 0.9580, 0.9392]       | 0.9669          | 0.9675       | 684                | 707              |
-| Palm API with prompt engineering         | 0.9792       | 0.6571       | 0.9787       | 0.9797       | 0.9031     | [0.9669, 0.9402, 0.9050, 0.8588]       | 0.9851          | 0.9852       | 665                | 675              |
-| flan-t5-large fine-tuned with peft       | 0.9332       | 0.6144       | 0.9226       | 0.9221       | 0.8358     | [0.9396, 0.8900, 0.8347, 0.7749]       | 0.9746          | 0.9750       | 662                | 679              |
-| quantized LLama 2 with prompt engineering| 0.8859       | 0.5330       | 0.8777       | 0.8810       | 0.8039     | [0.9368, 0.8771, 0.8297, 0.7942]       | 0.9372          | 0.9391       | 617                | 657              |
+| Model                                  | Rouge-1     | Rouge-2     | Rouge-L     | Rouge-Lsum  | Bleu       | Precision (P1) | Precision (P2) | Precision (P3) | Precision (P4) | Brevity Penalty | Length Ratio | Translation Length | Reference Length |
+|----------------------------------------|------------|------------|------------|------------|-----------|----------------|----------------|----------------|----------------|-----------------|--------------|-------------------|------------------|
+| quantized LLama 2 fine-tuned with peft | 0.9828     | 0.7005     | 0.9833     | 0.9833     | 0.9334    | 0.9898         | 0.9752         | 0.9580         | 0.9392         | 0.9669          | 0.9675       | 684               | 707              |
+| Palm API with prompt engineering       | 0.9792     | 0.6571     | 0.9787     | 0.9797     | 0.9031    | 0.9669         | 0.9402         | 0.9049         | 0.8588         | 0.9851          | 0.9852       | 665               | 675              |
+| flan-t5-large fine-tuned with peft     | 0.9415     | 0.5829     | 0.9341     | 0.9337     | 0.8543    | 0.9289         | 0.8770         | 0.8288         | 0.7888         | 1.0             | 1.0161       | 633               | 623              |
+| quantized LLama 2 with prompt engineering | 0.8859  | 0.5330     | 0.8777     | 0.8810     | 0.8039    | 0.9368         | 0.8771         | 0.8297         | 0.7942         | 0.9372          | 0.9391       | 617               | 657              |
 
 
+# Evaluation Results with flan-t5-large
+
+**Merged model loaded in 8 bits use less than half the inference time compare to loaded in 32 bit float**
+
+| Metric                 | Model loaded in 8 bits | Model loaded in 32 bits float |
+|------------------------|------------------------|-------------------------------|
+| Rouge-1 Score          | 0.9376                 | 0.9415                        |
+| Rouge-2 Score          | 0.5733                 | 0.5829                        |
+| Rouge-L Score          | 0.9299                 | 0.9341                        |
+| Rouge-Lsum Score       | 0.9297                 | 0.9337                        |
+
+| Metric                 | Model loaded in 8 bits | Model loaded in 32 bits float |
+|------------------------|------------------------|-------------------------------|
+| BLEU Score             | 0.8429                 | 0.8543                        |
+| BLEU Precisions        | [0.9266, 0.8702, 0.8158, 0.7674] | [0.9289, 0.8770, 0.8288, 0.7888] |
+| Brevity Penalty        | 1.0                    | 1.0                           |
+| Length Ratio           | 1.0064                 | 1.0161                        |
+| Translation Length     | 627                    | 633                           |
+| Reference Length       | 623                    | 623                           |
